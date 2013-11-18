@@ -1,0 +1,31 @@
+#!/bin/sh
+
+orig=$1 #milva, ana
+dest=$2 #numero destino
+
+awk -v orig="$orig" -v dest="$2" '
+
+    function send(orig, dest, text){
+        command = "~/bin/yowsup-cli -c ~/.wa." orig " -ws " dest " \"" text "\""
+        system(command ">/dev/null")
+    }
+
+
+    NR == 1{
+        message = $0
+    }
+
+    NR > 1{
+        message = message "\n" $0
+    }
+
+    !$0 && message {
+        send(orig, dest, message)
+        message = ""
+    }
+
+    END{
+        send(orig, dest, message)
+    }
+
+'

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+orig=$1 #milva, ana
+dest=$2 #numero destino
+mesg=$3
+
+sleep 1
+echo $mesg | ~/bin/wa.pipe $orig $dest
+grep Fernando "/home/deimos/fb/$mesg" | ~/bin/wa.pipe $orig $dest
+grep Dante "/home/deimos/fb/$mesg" | ~/bin/wa.pipe $orig $dest

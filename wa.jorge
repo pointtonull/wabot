@@ -1,0 +1,12 @@
+echo "Iniciando chat con Jorge" | grep --color=always .
+cd ~/programacion/github/yowsup/src
+python -u ./yowsup-cli -c config.milva -aki 5493875297119|awk '
+
+    /^3875297119/{system("play -q /usr/share/sounds/purple/receive.wav&")}
+    !/^Detected cc:/&&!/^Connecting to/&&!/^Authed/&&!/^Starting/&&!/^Enter Message/{
+        sub("@s.whatsapp.net", "");
+        sub("5493875827287", "PC");
+        sub("5493875297119", "Jorge");
+        print $0|"grep --color=always -e \".*]:\""
+    }
+'
